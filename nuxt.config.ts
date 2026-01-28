@@ -77,6 +77,7 @@ export default defineNuxtConfig({
     '/**': { isr: 60 },
     '/package/**': { isr: 60 },
     '/search': { isr: false, cache: false },
+    '/blog/**': { isr: true, prerender: true },
     '/_v/script.js': { proxy: 'https://npmx.dev/_vercel/insights/script.js' },
     '/_v/view': { proxy: 'https://npmx.dev/_vercel/insights/view' },
     '/_v/event': { proxy: 'https://npmx.dev/_vercel/insights/event' },

@@ -39,9 +39,14 @@
   },
   "nav": {
     "popular_packages": "Popular packages",
+    "blog": "blog",
     "search": "search",
     "settings": "settings",
     "back": "Back"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Insights and updates from the npmx community"
   },
   "settings": {
     "relative_dates": "Relative dates",
