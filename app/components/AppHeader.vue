@@ -127,6 +127,19 @@ onKeyStroke('.', e => {
         </ul>
       </div>
 
+        <ul class="flex items-center gap-4 sm:gap-6 list-none m-0 p-0">
+          <!-- Packages dropdown (when connected) -->
+          <li v-if="isConnected && npmUser" class="flex items-center">
+            <HeaderPackagesDropdown :username="npmUser" />
+          </li>
+
+          <!-- Orgs dropdown (when connected) -->
+          <li v-if="isConnected && npmUser" class="flex items-center">
+            <HeaderOrgsDropdown :username="npmUser" />
+          </li>
+        </ul>
+      </div>
+
       <!-- Right: User status + GitHub -->
       <div class="flex-shrink-0 flex items-center gap-4 sm:gap-6 ml-auto sm:ml-0">
         <NuxtLink
