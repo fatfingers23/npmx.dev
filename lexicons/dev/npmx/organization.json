@@ -2,7 +2,7 @@
   "defs": {
     "main": {
       "description": "Minimal draft to represent an organization.",
-      "key": "any",
+      "key": "tid",
       "record": {
         "properties": {
           "createdAt": {
@@ -12,6 +12,14 @@
           "name": {
             "description": "The name of the organization on npm.",
             "type": "string"
+          },
+          "members": {
+            "type": "array",
+            "description": "The members of the organization.",
+            "items": {
+              "type": "string",
+              "format": "did"
+            }
           }
         },
         "required": ["name", "createdAt"],

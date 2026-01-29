@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "lexicons": ["site.standard.document"],
+  "lexicons": ["com.atproto.repo.strongRef", "site.standard.document"],
   "resolutions": {
     "com.atproto.repo.strongRef": {
       "uri": "at://did:plc:6msi3pj7krzih5qxqtryxlzw/com.atproto.lexicon.schema/com.atproto.repo.strongRef",
