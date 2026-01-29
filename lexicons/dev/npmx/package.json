@@ -1,0 +1,31 @@
+{
+  "defs": {
+    "main": {
+      "description": "Minimal draft to represent a NPM package.",
+      "key": "tid",
+      "record": {
+        "properties": {
+          "createdAt": {
+            "description": "The date the record was created. Not the package",
+            "format": "datetime",
+            "type": "string"
+          },
+          "name": {
+            "description": "The name of the package on NPM.",
+            "maxLength": 214,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "createdAt"
+        ],
+        "type": "object"
+      },
+      "type": "record"
+    }
+  },
+  "id": "dev.npmx.package",
+  "lexicon": 1
+}

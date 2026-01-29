@@ -1,0 +1,15 @@
+{
+  "defs": {
+    "main": {
+      "description": "Placeholder for a profile lexicon",
+      "key": "literal:self",
+      "record": {
+        "properties": {},
+        "type": "object"
+      },
+      "type": "record"
+    }
+  },
+  "id": "dev.npmx.actor.profile",
+  "lexicon": 1
+}

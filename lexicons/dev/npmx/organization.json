@@ -1,0 +1,25 @@
+{
+  "defs": {
+    "main": {
+      "description": "Minimal draft to represent an organization.",
+      "key": "any",
+      "record": {
+        "properties": {
+          "createdAt": {
+            "format": "datetime",
+            "type": "string"
+          },
+          "name": {
+            "description": "The name of the organization on npm.",
+            "type": "string"
+          }
+        },
+        "required": ["name", "createdAt"],
+        "type": "object"
+      },
+      "type": "record"
+    }
+  },
+  "id": "dev.npmx.organization",
+  "lexicon": 1
+}
