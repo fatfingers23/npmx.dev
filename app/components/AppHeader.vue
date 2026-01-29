@@ -150,6 +150,20 @@ onKeyStroke('.', e => {
         </NuxtLink>
 
         <NuxtLink
+          to="/blog"
+          class="link-subtle font-mono text-sm inline-flex items-center gap-2"
+          aria-keyshortcuts="."
+        >
+          {{ $t('nav.blog') }}
+          <kbd
+            class="hidden sm:inline-flex items-center justify-center w-5 h-5 text-xs bg-bg-muted border border-border rounded"
+            aria-hidden="true"
+          >
+            .
+          </kbd>
+        </NuxtLink>
+
+        <NuxtLink
           to="/settings"
           class="link-subtle font-mono text-sm inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded"
           aria-keyshortcuts=","
