@@ -41,6 +41,7 @@ onKeyStroke(',', e => {
   e.preventDefault()
   router.push('/settings')
 })
+
 onKeyStroke('.', e => {
   const target = e.target as HTMLElement
   if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable) {
@@ -127,19 +128,6 @@ onKeyStroke('.', e => {
         </ul>
       </div>
 
-        <ul class="flex items-center gap-4 sm:gap-6 list-none m-0 p-0">
-          <!-- Packages dropdown (when connected) -->
-          <li v-if="isConnected && npmUser" class="flex items-center">
-            <HeaderPackagesDropdown :username="npmUser" />
-          </li>
-
-          <!-- Orgs dropdown (when connected) -->
-          <li v-if="isConnected && npmUser" class="flex items-center">
-            <HeaderOrgsDropdown :username="npmUser" />
-          </li>
-        </ul>
-      </div>
-
       <!-- Right: User status + GitHub -->
       <div class="flex-shrink-0 flex items-center gap-4 sm:gap-6 ml-auto sm:ml-0">
         <NuxtLink
@@ -147,20 +135,6 @@ onKeyStroke('.', e => {
           class="sm:hidden link-subtle font-mono text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded"
         >
           {{ $t('footer.about') }}
-        </NuxtLink>
-
-        <NuxtLink
-          to="/blog"
-          class="link-subtle font-mono text-sm inline-flex items-center gap-2"
-          aria-keyshortcuts="."
-        >
-          {{ $t('nav.blog') }}
-          <kbd
-            class="hidden sm:inline-flex items-center justify-center w-5 h-5 text-xs bg-bg-muted border border-border rounded"
-            aria-hidden="true"
-          >
-            .
-          </kbd>
         </NuxtLink>
 
         <NuxtLink
@@ -174,6 +148,20 @@ onKeyStroke('.', e => {
             aria-hidden="true"
           >
             ,
+          </kbd>
+        </NuxtLink>
+
+        <NuxtLink
+          to="/blog"
+          class="link-subtle font-mono text-sm inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 rounded"
+          aria-keyshortcuts="."
+        >
+          {{ $t('nav.blog') }}
+          <kbd
+            class="hidden sm:inline-flex items-center justify-center w-5 h-5 text-xs bg-bg-muted border border-border rounded"
+            aria-hidden="true"
+          >
+            .
           </kbd>
         </NuxtLink>
 
