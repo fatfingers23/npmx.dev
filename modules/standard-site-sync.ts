@@ -15,7 +15,6 @@ export default defineNuxtModule({
     nuxt.hook('content:file:afterParse', ctx => {
       const { content } = ctx
 
-      // Marshal content into site.standard.document using generated $build
       const document = site.standard.document.$build({
         site: PUBLICATION_SITE,
         path: content.path as string,
@@ -25,7 +24,7 @@ export default defineNuxtModule({
         publishedAt: new Date(content.date as string).toISOString(),
       })
 
-      // Mock PDS push
+      // TODO: Mock PDS push
       console.log('[standard-site-sync] Would push:', JSON.stringify(document, null, 2))
     })
   },
