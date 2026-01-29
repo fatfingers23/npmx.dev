@@ -1,8 +1,8 @@
 {
   "defs": {
     "main": {
-      "description": "TODO: describe purpose of this schema",
-      "key": "any",
+      "description": "A like of a package on npmx",
+      "key": "tid",
       "record": {
         "properties": {
           "createdAt": {
