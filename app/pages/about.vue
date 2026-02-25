@@ -30,13 +30,9 @@ const pmLinks = {
 
 const { data: contributors, status: contributorsStatus } = useLazyFetch('/api/contributors')
 
-const governanceMembers = computed(
-  () => contributors.value?.filter(c => c.role !== 'contributor') ?? [],
-)
+const governanceMembers = computed(() => [])
 
-const communityContributors = computed(
-  () => contributors.value?.filter(c => c.role === 'contributor') ?? [],
-)
+const communityContributors = computed(() => contributors.value ?? [])
 
 const roleLabels = computed(
   () =>
@@ -179,27 +175,27 @@ const roleLabels = computed(
             <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 list-none p-0">
               <li
                 v-for="person in governanceMembers"
-                :key="person.id"
+                :key="person.did"
                 class="relative flex items-center gap-3 p-3 border border-border rounded-lg hover:border-border-hover hover:bg-bg-muted transition-[border-color,background-color] duration-200 cursor-pointer focus-within:ring-2 focus-within:ring-offset-bg focus-within:ring-offset-2 focus-within:ring-fg/50"
               >
                 <img
-                  :src="`${person.avatar_url}&s=80`"
-                  :alt="`${person.login}'s avatar`"
+                  :src="`${person.avatar}&s=80`"
+                  :alt="`${person.did}'s avatar`"
                   class="w-12 h-12 rounded-md ring-1 ring-border shrink-0"
                   loading="lazy"
                 />
                 <div class="min-w-0 flex-1">
                   <div class="font-mono text-sm text-fg truncate">
                     <NuxtLink
-                      :to="person.html_url"
+                      :to="person.displayName"
                       target="_blank"
                       class="decoration-none after:content-[''] after:absolute after:inset-0"
                       :aria-label="$t('about.contributors.view_profile', { name: person.login })"
                     >
-                      @{{ person.login }}
+                      @{{ person.loghandlein }}
                     </NuxtLink>
                   </div>
-                  <div class="text-xs text-fg-muted tracking-tight">
+                  <!-- <div class="text-xs text-fg-muted tracking-tight">
                     {{ roleLabels[person.role] ?? person.role }}
                   </div>
                   <LinkBase
@@ -212,7 +208,7 @@ const roleLabels = computed(
                     :aria-label="$t('about.team.sponsor_aria', { name: person.login })"
                   >
                     {{ $t('about.team.sponsor') }}
-                  </LinkBase>
+                  </LinkBase> -->
                 </div>
                 <span
                   class="i-lucide:external-link rtl-flip w-3.5 h-3.5 text-fg-muted opacity-50 shrink-0 self-start mt-0.5 pointer-events-none"
@@ -228,13 +224,14 @@ const roleLabels = computed(
               id="contributors-heading"
               class="text-sm text-fg-subtle uppercase tracking-wider mb-4"
             >
-              {{
+              {{ `${communityContributors.length} people on npmx.social` }}
+              <!-- {{
                 $t(
                   'about.contributors.title',
                   { count: $n(communityContributors.length) },
                   communityContributors.length,
                 )
-              }}
+              }} -->
             </h3>
 
             <div
@@ -257,7 +254,7 @@ const roleLabels = computed(
             >
               <li
                 v-for="contributor in communityContributors"
-                :key="contributor.id"
+                :key="contributor.did"
                 class="group relative"
               >
                 <LinkBase
@@ -267,8 +264,18 @@ const roleLabels = computed(
                   :aria-label="$t('about.contributors.view_profile', { name: contributor.login })"
                 >
                   <img
-                    :src="`${contributor.avatar_url}&s=64`"
-                    :alt="`${contributor.login}'s avatar`"
+                    v-if="contributor.avatar"
+                    :src="`${contributor.avatar}`"
+                    :alt="`${contributor.handle}'s avatar`"
+                    width="48"
+                    height="48"
+                    class="w-12 h-12 rounded-lg ring-2 ring-transparent group-hover:ring-accent transition-all duration-200 ease-out hover:scale-125 will-change-transform"
+                    loading="lazy"
+                  />
+                  <img
+                    v-else
+                    src="https://npmx.dev/pwa-64x64.png"
+                    alt="Default avatar"
                     width="48"
                     height="48"
                     class="w-12 h-12 rounded-lg ring-2 ring-transparent group-hover:ring-accent transition-all duration-200 ease-out hover:scale-125 will-change-transform"
@@ -279,7 +286,7 @@ const roleLabels = computed(
                     dir="ltr"
                     role="tooltip"
                   >
-                    @{{ contributor.login }}
+                    @{{ contributor.handle }}
                   </span>
                 </LinkBase>
               </li>
